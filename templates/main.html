@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style> td, th { border: 1px solid black; } </style>
 </head>
 <body>
+    {{numbersOfDays}}
     <form class="form-control" method="post" action="/previousMonth">
         <input type="submit" class="btn btn-dark my-1" value="<">
     </form>
@@ -12,23 +14,31 @@
         <input type="submit" class="btn btn-dark my-1" value=">">
     </form>
     <div>{{nameOfMonth}}</div>
+
     <table id="plantTableID" class="table mt-0 table-dark table-striped table-hover plantTable">
         <thead>
-        <tr>
-            <th>Roślina</th>
-            <th>Ostatnio podlana</th>
-            <th>Bez nawozu</th>
-            <th>Ostatnio nawieziona</th>
-            <th>Rodzaj Ziemii</th>
-            <th>Podlewanie Zraszanie</th>
-            <th>Nawożenie</th>
-            <th>Warunki</th>
-            <th>Edytuj</th>
-            <th>Akcja</th>
-        </tr>
+            <tr>
+                <th></th>
+                {%for i in range(1, numbersOfDays + 1)%}
+                <th>{{nameOfWeekDay}}</th>
+                {%endfor%}
+            </tr>
         </thead>
         <tbody>
-
+        <tr>
+            <th>Name</th>
+            {%for i in range(1, numbersOfDays + 1)%}
+            <th>{{i}}</th>
+            {%endfor%}
+        </tr>
+            {%for i in range(0, numbersOfPeople)%}
+                <tr>
+                    <td>{{people[i]}}</td>
+                    {%for i in range(1, numbersOfDays + 1)%}
+                        <td></td>
+                    {%endfor%}
+                </tr>
+            {%endfor%}
         </tbody>
     </table>
 {{nameOfWeekDay}}
