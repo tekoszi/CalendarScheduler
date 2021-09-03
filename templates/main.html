@@ -5,6 +5,33 @@
     <title>Title</title>
 </head>
 <body>
-<b>hellowordfrom the main template od fruzyk</b>
+    <form class="form-control" method="post" action="/previousMonth">
+        <input type="submit" class="btn btn-dark my-1" value="<">
+    </form>
+    <form class="form-control" method="post" action="/nextMonth">
+        <input type="submit" class="btn btn-dark my-1" value=">">
+    </form>
+    <div>{{nameOfMonth}}</div>
+    <table id="plantTableID" class="table mt-0 table-dark table-striped table-hover plantTable">
+        <thead>
+        <tr>
+            <th>Roślina</th>
+            <th>Ostatnio podlana</th>
+            <th>Bez nawozu</th>
+            <th>Ostatnio nawieziona</th>
+            <th>Rodzaj Ziemii</th>
+            <th>Podlewanie Zraszanie</th>
+            <th>Nawożenie</th>
+            <th>Warunki</th>
+            <th>Edytuj</th>
+            <th>Akcja</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+{{nameOfWeekDay}}
+
 </body>
 </html>
