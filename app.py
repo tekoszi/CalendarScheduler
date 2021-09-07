@@ -1,9 +1,9 @@
 import json
 import os
+from calendar import weekday, monthlen
 from datetime import datetime
 
-from flask import Flask, render_template, request
-from calendar import monthrange, weekday, _monthlen
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -22,8 +22,8 @@ def main():
 
     # we should clear local storage for current month to be default when you run app again.
     #
-    nameOfWeekDay = weekday(current_year, current_month, current_day)
-    numbersOfDays = _monthlen(current_year, current_month)
+    firstDay = weekday(current_year, current_month, 1)
+    monthLength = monthlen(current_year, current_month)
 
     def loadDB():
         with open(filename, mode='r') as json_file:
@@ -38,9 +38,17 @@ def main():
     people = db["people"]
     numbersOfPeople = len(people)
 
-    return render_template('main.html', people=db['people'], nameOfWeekDay=db["weekdays"][nameOfWeekDay],
-                           nameOfMonth=db["months"][current_month - 1], numbersOfDays=numbersOfDays,
-                           numbersOfPeople=numbersOfPeople, )
+    return render_template('main.html',
+                           people=db['people'],
+                           weekdays=db["weekdays"],
+                           nameOfMonth=db["months"][current_month - 1],
+                           numbersOfDays=monthLength,
+                           numbersOfPeople=numbersOfPeople,
+                           firstDay=firstDay,
+                           current_month=current_month,
+                           months=db['months']
+
+                           )
 
 
 @app.route("/calculateMonthDays", methods=["GET", "POST"])
