@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar Scheduler</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+
+    <script src="{{ url_for('static', filename='jQuery/jquery-3.3.1.js')}}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='DataTables/css/dataTables.bootstrap4.css')}}">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='Bootstrap/css/bootstrap.css')}}">
+    <script src="{{ url_for('static', filename='Bootstrap/js/bootstrap.js')}}"></script>
+
+    <script src="{{ url_for('static', filename='main.js')}}"></script>
+
+
+
+
+</head>
+
+<body>
+
+<ul class="mainmenu">
+    <li><a class="active menuitem" href="/">Roślinki</a></li>
+    <li><a href="/pressure" class="menuitem">Ciśnienie</a></li>
+    <li><a href="/about" class="menuitem">About</a></li>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <li class="rightAllign mt-3">{{ message }}</li>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% if session['logged_in'] %}
+    <li><a href="/" class="menuitem" onclick="buildLocalstorage();">localstorage = 0</a></li>
+    <li>
+        <form id="logoutForm" class="hidenFormBG" method="post" action="/logout">
+            <input type="submit" class="menuitem rightAllign" value="Wyloguj">
+        </form>
+    </li>
+
+    {% else %}
+    <li>
+        <button type="button" class=" menuitem rightAllign " data-toggle="modal" data-target="#exampleModal">
+            Zaloguj
+        </button>
+    </li>
+    {% endif %}
+
+
+</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logowanie</h5>
+                <button type="button" class="close btn btn-dark" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm" class="form-control" method="post" action="/login">
+                    <div id="demo">
+                        <label>Login</label><br>
+                        <input class="form-control" type="text" name="plantKey" required><br>
+                        <label>Hasło</label><br>
+                        <input class="form-control" type="password" name="plantNazwa" required><br>
+                    </div>
+                    <input type="submit" class="btn btn-dark my-1" value="Zaloguj">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% block content %}{% endblock %}
+
+</html>
