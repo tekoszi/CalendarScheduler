@@ -1,0 +1,16 @@
+{
+  "people": [
+    "Osoba1",
+    "Osoba2",
+    "Osoba3",
+    "Osoba4",
+    "Osoba5",
+    "Osoba6",
+    "Osoba7",
+    "Osoba8",
+    "Osoba9",
+    "Osoba10"
+  ],
+  "months": ["Styczen","Luty","Marzec","Kwiecien","Maj","Czerwiec","Lipiec","Sierpien","Wrzesien","Październik","Listopad","Grudzien"],
+  "weekdays": ["Pon","Wt","Śr","Czw","Pt","Sb","Nd"]
+}
